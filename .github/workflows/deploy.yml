@@ -33,7 +33,7 @@ jobs:
       env:
         VITE_API_URL: ${{ secrets.VITE_API_URL || 'https://fit-team-prototype-production.up.railway.app/api' }}
         VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
-      
+    
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/main'
@@ -42,7 +42,7 @@ jobs:
         publish_dir: ./frontend/dist
         cname: ${{ secrets.CUSTOM_DOMAIN }}
         force_orphan: true
-        keep_files: false
+        full_history: false
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
 
