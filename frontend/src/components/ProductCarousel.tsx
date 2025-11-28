@@ -6,6 +6,7 @@ import { ShoppingCart } from 'lucide-react';
 import axios from 'axios';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
+import { API_URL } from '../config';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -24,7 +25,6 @@ const ProductCarousel: React.FC = () => {
 
   const fetchFeaturedProducts = async () => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
       const response = await axios.get(`${API_URL}/products/featured`);
       setProducts(response.data);
     } catch (error) {

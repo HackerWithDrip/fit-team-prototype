@@ -4,6 +4,7 @@ import { ShoppingCart } from 'lucide-react';
 import axios from 'axios';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
+import { API_URL } from '../config';
 import './Products.css';
 
 const Products: React.FC = () => {
@@ -29,7 +30,6 @@ const Products: React.FC = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
       const url = selectedCategory === 'All'
         ? `${API_URL}/products`
         : `${API_URL}/products/category/${selectedCategory}`;

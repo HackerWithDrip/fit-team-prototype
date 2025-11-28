@@ -6,6 +6,7 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 import axios from 'axios';
 import { useCart } from '../context/CartContext';
 import { getSessionId } from '../context/CartContext';
+import { API_URL } from '../config';
 import './Checkout.css';
 
 // Replace with your actual Stripe publishable key
@@ -59,7 +60,6 @@ const CheckoutForm: React.FC = () => {
         setLoading(false);
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         // Create order in backend
-        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
         await axios.post(`${API_URL}/orders`, {
           sessionId: getSessionId(),
           total: cartTotal,
@@ -179,8 +179,7 @@ const Checkout: React.FC = () => {
 
     // Create payment intent
     axios
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
-      axios.post(`${API_URL}/create-payment-intent`, {
+      .post(`${API_URL}/create-payment-intent`, {
         amount: cartTotal,
         currency: 'usd',
       })
