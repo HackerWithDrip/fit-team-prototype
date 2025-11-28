@@ -24,7 +24,8 @@ const ProductCarousel: React.FC = () => {
 
   const fetchFeaturedProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/products/featured');
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      const response = await axios.get(`${API_URL}/products/featured`);
       setProducts(response.data);
     } catch (error) {
       console.error('Failed to fetch featured products:', error);

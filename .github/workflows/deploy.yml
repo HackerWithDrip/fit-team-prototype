@@ -31,7 +31,7 @@ jobs:
       working-directory: ./frontend
       run: npm run build
       env:
-        VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        VITE_API_URL: ${{ secrets.VITE_API_URL || 'https://fit-team-prototype-production.up.railway.app/api' }}
         VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
       
     - name: Deploy to GitHub Pages

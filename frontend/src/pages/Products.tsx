@@ -29,9 +29,10 @@ const Products: React.FC = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
       const url = selectedCategory === 'All'
-        ? 'http://localhost:3001/api/products'
-        : `http://localhost:3001/api/products/category/${selectedCategory}`;
+        ? `${API_URL}/products`
+        : `${API_URL}/products/category/${selectedCategory}`;
       const response = await axios.get(url);
       setProducts(response.data);
     } catch (error) {

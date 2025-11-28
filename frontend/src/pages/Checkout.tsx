@@ -59,7 +59,8 @@ const CheckoutForm: React.FC = () => {
         setLoading(false);
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         // Create order in backend
-        await axios.post('http://localhost:3001/api/orders', {
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+        await axios.post(`${API_URL}/orders`, {
           sessionId: getSessionId(),
           total: cartTotal,
           shippingAddress: shippingInfo,
@@ -178,7 +179,8 @@ const Checkout: React.FC = () => {
 
     // Create payment intent
     axios
-      .post('http://localhost:3001/api/create-payment-intent', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      axios.post(`${API_URL}/create-payment-intent`, {
         amount: cartTotal,
         currency: 'usd',
       })
