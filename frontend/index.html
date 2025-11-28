@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FitTeam - Premium Fitness Supplements</title>
     <script>
-      // Ensure hash is present for HashRouter
-      if (!window.location.hash && window.location.pathname.endsWith('/fit-team-prototype/')) {
-        window.location.replace(window.location.pathname + '#/');
-      }
+      // Ensure hash is present for HashRouter on initial load only
+      (function() {
+        var path = window.location.pathname;
+        var hash = window.location.hash;
+        // Only redirect if we're at the base path with no hash
+        if ((path === '/fit-team-prototype/' || path === '/fit-team-prototype') && !hash) {
+          window.location.replace(path + '#/');
+        }
+      })();
     </script>
   </head>
   <body>

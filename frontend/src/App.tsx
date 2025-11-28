@@ -1,6 +1,4 @@
-import { HashRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import React from 'react';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
@@ -12,30 +10,11 @@ import About from './pages/About';
 import OrderSuccess from './pages/OrderSuccess';
 import './App.css';
 
-// Component to ensure hash routing works correctly on initial load
-function HashRouterFix() {
-  const location = useLocation();
-  const [hasInitialized, setHasInitialized] = React.useState(false);
-  
-  useEffect(() => {
-    // Only redirect on initial load if there's no hash
-    if (!hasInitialized && (!location.hash || location.hash === '' || location.hash === '#')) {
-      window.location.replace(window.location.pathname + '#/');
-      setHasInitialized(true);
-    } else if (!hasInitialized) {
-      setHasInitialized(true);
-    }
-  }, [location, hasInitialized]);
-  
-  return null;
-}
-
 function App() {
   return (
     <ThemeProvider>
       <CartProvider>
         <Router>
-          <HashRouterFix />
           <div className="app">
             <Header />
             <main>
