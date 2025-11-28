@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider>
       <CartProvider>
-        <Router>
+        <Router basename="/fit-team-prototype">
           <div className="app">
             <Header />
             <main>
