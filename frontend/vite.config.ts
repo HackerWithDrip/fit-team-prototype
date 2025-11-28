@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/fitness-ecommerce/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/fit-team-prototype/' : '/',
   server: {
     port: 5173,
   },
