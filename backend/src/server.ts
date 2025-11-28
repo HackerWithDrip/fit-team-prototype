@@ -15,7 +15,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key', 
 });
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://hackerwithdrip.github.io',
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://localhost:5174',
+    'http://localhost:5175'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Initialize database
@@ -224,7 +233,24 @@ app.get('/api/orders/:id', (req: Request, res: Response) => {
 
 // Health check
 app.get('/health', (req: Request, res: Response) => {
-  res.json({ status: 'ok' });
+  res.json({ 
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    database: 'connected'
+  });
+});
+
+// Root endpoint
+app.get('/', (req: Request, res: Response) => {
+  res.json({ 
+    message: 'FitTeam API Server',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      products: '/api/products',
+      featured: '/api/products/featured'
+    }
+  });
 });
 
 app.listen(PORT, () => {
