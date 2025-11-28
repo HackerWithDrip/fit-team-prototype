@@ -18,6 +18,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key', 
 app.use(cors({
   origin: [
     'https://hackerwithdrip.github.io',
+    'https://hackerwithdrip.github.io/fit-team-prototype',
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost:5174',
