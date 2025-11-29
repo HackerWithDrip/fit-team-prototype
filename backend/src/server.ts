@@ -17,9 +17,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key', 
 // Middleware
 app.use(cors({
   origin: [
+    // GitHub Pages - original profile
     'https://hackerwithdrip.github.io',
     'https://hackerwithdrip.github.io/fit-team-prototype',
     'https://hackerwithdrip.github.io/fit-team-prototype/',
+    // GitHub Pages - dynastytech profile (new deployment)
+    'https://dynastytech.github.io',
+    'https://dynastytech.github.io/fit-team-prototype',
+    'https://dynastytech.github.io/fit-team-prototype/',
+    // Local development
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost:5174',
